@@ -6,6 +6,9 @@ on:
       script:
         description: 'JavaScript code to inject into HTML'
         required: true
+  push:
+    branches:
+      - master
 
 jobs:
   update_html:
