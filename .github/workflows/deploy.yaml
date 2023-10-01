@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       new_content:
-        description: 'New content to write to the file'
+        description: 'New content to write to the files'
         required: true
   push:
     branches:
