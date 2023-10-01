@@ -6,6 +6,9 @@ on:
       new_content:
         description: 'New content to write to the file'
         required: true
+  push:
+    branches:
+      - master
 
 jobs:
   update_file:
