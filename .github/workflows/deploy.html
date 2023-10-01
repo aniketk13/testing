@@ -1,0 +1,31 @@
+name: Update HTML with JavaScript
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'JavaScript code to inject into HTML'
+        required: true
+
+jobs:
+  update_html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update HTML with JavaScript
+        run: |
+          # Get the JavaScript code from the input
+          updated_script="${{ github.event.inputs.script }}"
+
+          # Update the script code inside index.html
+          sed -i "s|<script type=\"module\">.*<\/script>|<script type=\"module\">\n${updated_script}\n<\/script>|" index.html
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add index.html
+          git commit -m "Update JavaScript code in HTML"
+          git push
